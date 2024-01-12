@@ -2,9 +2,10 @@ package com.Example.RestCRUDDemo.Service;
 
 import com.Example.RestCRUDDemo.Model.Vendor;
 import com.Example.RestCRUDDemo.Repository.VendorRepo;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class VendorServiceImp implements VendorService{
 
     VendorRepo vendorRepo;
