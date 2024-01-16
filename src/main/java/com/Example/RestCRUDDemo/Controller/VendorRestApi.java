@@ -1,7 +1,10 @@
 package com.Example.RestCRUDDemo.Controller;
 
 import com.Example.RestCRUDDemo.Model.Vendor;
+import com.Example.RestCRUDDemo.Response.ResponseHandler;
 import com.Example.RestCRUDDemo.Service.VendorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +22,10 @@ public class VendorRestApi {
     @GetMapping()
     public List<Vendor> getAllVendorDetails(){
         return  vendorService.getAllVendors();
-//                Vendor("1","vendor 1","egypt","010139439");
     }
     @GetMapping("{vendorId}")
-    public Vendor getVendorDetails(@PathVariable("vendorId") String vendorId){
-        return  vendorService.getVendor(vendorId);
-//                Vendor("1","vendor 1","egypt","010139439");
+    public ResponseEntity<Object> getVendorDetails(@PathVariable("vendorId") String vendorId){
+        return ResponseHandler.responseBuilder("Requested Vendor details", HttpStatus.OK,vendorService.getVendor(vendorId));
     }
 
     @PostMapping
