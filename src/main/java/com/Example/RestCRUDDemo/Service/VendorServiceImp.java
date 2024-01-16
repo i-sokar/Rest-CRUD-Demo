@@ -1,5 +1,7 @@
 package com.Example.RestCRUDDemo.Service;
 
+import com.Example.RestCRUDDemo.Exception.VendorException;
+import com.Example.RestCRUDDemo.Exception.VendorNotFound;
 import com.Example.RestCRUDDemo.Model.Vendor;
 import com.Example.RestCRUDDemo.Repository.VendorRepo;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,11 @@ public class VendorServiceImp implements VendorService{
 
     @Override
     public Vendor getVendor(String vendorid) {
+
+        if (vendorRepo.findById(vendorid).isEmpty()){
+            throw new VendorNotFound("Requested vendor doesn't exist");
+        }
+
         return vendorRepo.findById(vendorid).get();
     }
 
